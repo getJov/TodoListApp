@@ -1,0 +1,168 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 600px;
+  max-width: 100%;
+}
+
+h1 {
+  margin: 0 0 20px;
+}
+
+.input-area {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.input-area button {
+  width: 10%;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.main-text {
+  flex: 1;
+}
+
+button {
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.btnAdd {
+  background: hsl(120, 100%, 35%);
+  color: white;
+}
+
+.btnAdd:hover {
+  background: hsl(120, 100%, 30%);
+}
+
+.btnMove {
+  background: hsl(51, 100%, 50%);
+  color: white;
+}
+
+.btnMove:hover {
+  background: hsl(51, 100%, 35%);
+}
+
+.btnEdit {
+  background: hsl(211, 100%, 50%);
+  color: white;
+}
+
+.btnEdit:hover {
+  background: hsl(211, 100%, 35%);
+}
+
+.btnDelete {
+  background: hsl(347, 100%, 50%);
+  color: white;
+}
+
+.btnDelete:hover {
+  background: hsl(347, 100%, 35%);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+/* ✅ Button Grouping */
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+}
+
+.move-buttons {
+  display: flex;
+  gap: 5px; /* Ensures space between Move Up and Move Down */
+  width: 100%;
+}
+
+/* 🔹 Responsive: Adjust Layout for Small Screens */
+@media (max-width: 800px) {
+  .container {
+    width: 450px;
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .input-area {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .input-area input[type="text"] {
+    width: 100%;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    margin-right: 100px;
+  }
+
+  .input-area button {
+    width: 100%;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  .button-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .move-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+  }
+}
+
+.completed span {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
