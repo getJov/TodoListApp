@@ -1,16 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {
-  addTaskUseCase,
-  deleteTaskUseCase,
-  toggleTaskUseCase,
-  editTaskUseCase,
-  moveTaskUpUseCase,
-  moveTaskDownUseCase,
-} from "../../domain/usecases/taskUseCases";
-import TaskRepository from "../../infrastructure/repositories/taskRepository";
+import * as taskUseCases from "../../domain/usecases/taskUseCases";
 
 const initialState = {
-  tasks: TaskRepository.loadTasks(),
+  tasks: taskUseCases.fetchTasks(),
 };
 
 const todoSlice = createSlice({
@@ -18,31 +10,25 @@ const todoSlice = createSlice({
   initialState,
   reducers: {
     addTask: (state, action) => {
-      state.tasks = addTaskUseCase(state.tasks, action.payload);
-      TaskRepository.saveTasks(state.tasks);
-    },
-    deleteTask: (state, action) => {
-      state.tasks = deleteTaskUseCase(state.tasks, action.payload);
-      TaskRepository.saveTasks(state.tasks);
-    },
-    toggleTask: (state, action) => {
-      state.tasks = toggleTaskUseCase(state.tasks, action.payload);
-      TaskRepository.saveTasks(state.tasks);
+      state.tasks = taskUseCases.createTask(action.payload.text);
     },
     editTask: (state, action) => {
-      state.tasks = editTaskUseCase(state.tasks, action.payload);
-      TaskRepository.saveTasks(state.tasks);
+      state.tasks = taskUseCases.modifyTask(action.payload.index, action.payload.newText);
+    },
+    toggleTask: (state, action) => {
+      state.tasks = taskUseCases.toggleTaskStatus(action.payload);
+    },
+    deleteTask: (state, action) => {
+      state.tasks = taskUseCases.removeTask(action.payload);
     },
     moveTaskUp: (state, action) => {
-      state.tasks = moveTaskUpUseCase(state.tasks, action.payload);
-      TaskRepository.saveTasks(state.tasks);
+      state.tasks = taskUseCases.moveTaskUp(action.payload);
     },
     moveTaskDown: (state, action) => {
-      state.tasks = moveTaskDownUseCase(state.tasks, action.payload);
-      TaskRepository.saveTasks(state.tasks);
+      state.tasks = taskUseCases.moveTaskDown(action.payload);
     },
   },
 });
 
-export const { addTask, deleteTask, toggleTask, editTask, moveTaskUp, moveTaskDown } = todoSlice.actions;
+export const { addTask, editTask, toggleTask, deleteTask, moveTaskUp, moveTaskDown } = todoSlice.actions;
 export default todoSlice.reducer;
